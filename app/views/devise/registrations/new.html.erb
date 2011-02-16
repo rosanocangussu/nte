@@ -6,6 +6,14 @@
   <%= f.input :email  %>
   <%= f.input :password  %>
   <%= f.input :password_confirmation  %>
+  <br />
+  <%= f.input :setor,:label => "Setor:", :collection => User::SETOR  %>
+ 
+  <% for role in User::ROLES %>
+  <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
+  <%=h role.humanize %><br />
+<% end %>
+<%= hidden_field_tag "user[roles][]", "" %>
   <%= f.button :submit  %>
 <% end %>
 
